@@ -41,6 +41,7 @@
                 break;
             case 'button-cookie-get':
                 var cVal = cookieHandler.getCookieValue(cookieName);
+                cVal = cVal != '' ? cVal : 'No value found';
                 outputReturn(cVal);
                 break;
         }
