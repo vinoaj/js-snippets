@@ -4,14 +4,6 @@ var cookieHandler = {};
 cookieHandler.isValidCookie = function (cookieName) {
     var cookieValue = cookieHandler.getCookieValue(cookieName);
     return (cookieValue == '') ? false : true;
-
-    /*
-    if (cookieValue == '') {
-        return false;
-    }
-
-    return true;
-    */
 };
 
 //Adapted from https://www.w3schools.com/js/js_cookies.asp

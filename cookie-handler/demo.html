@@ -7,6 +7,33 @@
 
   <title>How to manage cookies with JavaScript</title>
 
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+
+    #input-set-cookie {
+      border: 1px solid black;
+      display: inline-block;
+      padding: 5px;
+    }
+
+    #outputs {
+      border: 1px solid grey;
+      margin-bottom: 25px;
+      padding: 25px;
+    }
+
+    .button {
+      background-color: black;
+      border: 1px solid grey;
+      color: white;
+      display: inline-block;
+      margin: 5px;
+      padding: 12px;
+    }
+  </style>
+
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="cookie-handler.js"></script>
   <script>
@@ -41,8 +68,12 @@
                 break;
             case 'button-cookie-get':
                 var cVal = cookieHandler.getCookieValue(cookieName);
-                cVal = cVal != '' ? cVal : 'No value found';
+                //cVal = cVal != '' ? cVal : 'No value found';
                 outputReturn(cVal);
+                break;
+            case 'button-cookie-delete':
+                cookieHandler.deleteCookie(cookieName);
+                outputReturn('Deleted: ' + cookieName);
                 break;
         }
 
@@ -59,7 +90,9 @@
   <div id="outputs">
     document.cookie:
     <div id="output-doccookie"></div>
-
+    <br />
+    <br />
+    <br />
     Your request returned:
     <div id="output-return"></div>
   </div>
@@ -67,19 +100,24 @@
     What is your cookie name?
     <input type="text" name="cookie-name" id="cookie-name">
   </div>
+  <br />
+  <br />
   <div id="controls">
     <div id="button-cookie-exists" class="button">
       Does cookie exist?
     </div>
-    <div>
+    <div id="button-cookie-get" class="button">
+      Get cookie value
+    </div>
+    <div id="input-set-cookie">
       What value do you want to set your cookie to?
       <input type="text" name="cookie-value" id="cookie-value">
       <div id="button-cookie-set" class="button">
         Set cookie value
       </div>
     </div>
-    <div id="button-cookie-get" class="button">
-      Get cookie value
+    <div id="button-cookie-delete" class="button">
+      Delete cookie
     </div>
   </div>
 </body>
