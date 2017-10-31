@@ -2,8 +2,8 @@
 var cookieHandler = {};
 
 cookieHandler.isValidCookie = function (cookieName) {
-    var cookieValue = getCookie(cookieName);
-    return (cookieValue == '') ? true : false;
+    var cookieValue = cookieHandler.getCookieValue(cookieName);
+    return (cookieValue == '') ? false : true;
 
     /*
     if (cookieValue == '') {
@@ -21,10 +21,11 @@ cookieHandler.setCookie = function (cookieName, cookieValue, nDays) {
     var expires = "expires="+ d.toUTCString();
     document.cookie = cookieName + "=" + cookieValue +
         ";" + expires + ";path=/";
+    console.log(document.cookie);
 }
 
 //Adapted from https://www.w3schools.com/js/js_cookies.asp
-cookieHandler.getCookie = function (cookieName) {
+cookieHandler.getCookieValue = function (cookieName) {
     var name = cookieName + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
@@ -39,4 +40,8 @@ cookieHandler.getCookie = function (cookieName) {
     }
 
     return '';
+}
+
+cookieHandler.deleteCookie = function (cookieName) {
+  cookieHandler.setCookie(cookieName,"",-730);
 }

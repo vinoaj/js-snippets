@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>How to manage cookies with JavaScript</title>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="cookie-handler.js"></script>
+  <script>
+    $(document).ready(function() {
+        outputDocCookie();
+
+        $('div[id*="button-cookie"]').click(function (){
+            handleButtonClick($(this).attr('id'));
+        });
+    });
+
+    function outputDocCookie() {
+        var strDocCookie = document.cookie !== '' ?
+            document.cookie : 'No cookies present';
+        $('#output-doccookie').text(strDocCookie);
+    }
+
+    function handleButtonClick(elementId) {
+        //console.log(elementId);
+        var cookieName = $('#cookie-name').val();
+        var cookieValue = $('#cookie-value').val();
+
+        switch (elementId) {
+            case 'button-cookie-exists':
+                outputReturn(cookieHandler.isValidCookie(cookieName) ?
+                    'True' : 'False');
+                break;
+            case 'button-cookie-set':
+                console.log('bcs: ', cookieName, cookieValue);
+                cookieHandler.setCookie(cookieName, cookieValue, 365);
+                outputReturn(cookieHandler.getCookieValue(cookieName));
+                break;
+            case 'button-cookie-get':
+                var cVal = cookieHandler.getCookieValue(cookieName);
+                outputReturn(cVal);
+                break;
+        }
+
+        outputDocCookie();
+    }
+
+    function outputReturn(str) {
+        $('#output-return').text(str);
+    }
+  </script>
+
+</head>
+<body>
+  <div id="outputs">
+    document.cookie:
+    <div id="output-doccookie"></div>
+
+    Your request returned:
+    <div id="output-return"></div>
+  </div>
+  <div id="inputs">
+    What is your cookie name?
+    <input type="text" name="cookie-name" id="cookie-name">
+  </div>
+  <div id="controls">
+    <div id="button-cookie-exists" class="button">
+      Does cookie exist?
+    </div>
+    <div>
+      What value do you want to set your cookie to?
+      <input type="text" name="cookie-value" id="cookie-value">
+      <div id="button-cookie-set" class="button">
+        Set cookie value
+      </div>
+    </div>
+    <div id="button-cookie-get" class="button">
+      Get cookie value
+    </div>
+  </div>
+</body>
+</html>
