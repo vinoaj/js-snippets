@@ -25,9 +25,9 @@ cookieHandler.isValidCookie = function (cookieName) {
 cookieHandler.setCookie = function (cookieName, cookieValue, nDays) {
     var d = new Date();
     d.setTime(d.getTime() + (nDays*24*60*60*1000));
-    var expires = "expires="+ d.toUTCString();
-    document.cookie = cookieName + "=" + cookieValue +
-        ";" + expires + ";path=/";
+    var expires = 'expires='+ d.toUTCString();
+    document.cookie = cookieName + '+' + cookieValue +
+        ';' + expires + ';path=/';
 }
 
 /**
@@ -37,7 +37,7 @@ cookieHandler.setCookie = function (cookieName, cookieValue, nDays) {
  * @returns {string}
  */
 cookieHandler.getCookieValue = function (cookieName) {
-    var name = cookieName + "=";
+    var name = cookieName + '=';
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
     for(var i = 0; i <ca.length; i++) {
@@ -58,5 +58,5 @@ cookieHandler.getCookieValue = function (cookieName) {
  * @param {string} cookieName Name of the cookie to be deleted
  */
 cookieHandler.deleteCookie = function (cookieName) {
-  cookieHandler.setCookie(cookieName,"",-730);
+  cookieHandler.setCookie(cookieName,'',-730);
 }
