@@ -11,22 +11,23 @@
 
 var ipLookup = {};
 ipLookup.lookupData = {};
+ipLookup.promises = {};
+
+ipLookup.promises.geoIpCall = new Promise(function(resolve, reject) {
+  $.getJSON('//freegeoip.net/json/?callback=?').done(function(data) {
+      resolve(data);
+  }).fail(function(data) {
+      reject(data);
+  });
+});
 
 ipLookup.lookup = function () {
-  var p = new Promise(function(resolve, reject) {
-    $.getJSON('//freegeoip.net/json/?callback=?').done(function(data) {
-        resolve(data);
-    }).fail(function(data) {
-        reject(data);
+  return new Promise(function(resolve,reject) {
+    ipLookup.promises.geoIpCall.then(function(data) {
+      ipLookup.lookupData = data;
+      resolve(data);
+    }, function(error) {
+      reject(data);
     });
   });
-
-  p.then(function(data) {
-      ipLookup.lookupData = data;
-      console.log('2: ', ipLookup.lookupData);
-      return data;
-  });
-}
-
-ipLookup.lookup();
-//console.log('1: ', ipLookup.lookupData);
+};
