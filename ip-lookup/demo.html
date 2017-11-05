@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>How to use JavaScript to determine client IP address and details</title>
+
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+
+    td {
+      padding: 15px;
+    }
+
+    #input-set-cookie {
+      border: 1px solid black;
+      display: inline-block;
+      padding: 5px;
+    }
+
+    #outputs {
+      border: 1px solid grey;
+      margin-bottom: 25px;
+      padding: 25px;
+    }
+
+    .button {
+      background-color: black;
+      border: 1px solid grey;
+      color: white;
+      display: inline-block;
+      margin: 5px;
+      padding: 12px;
+    }
+  </style>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KRDJQ35');</script>
+  <!-- End Google Tag Manager -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="ip-lookup.js"></script>
+  <script>
+    $(document).ready(function() {
+      ipLookup.lookup().then(function() {
+        outputIpDetails();
+      });
+    });
+
+    function outputIpDetails() {
+      var ipDetails = ipLookup.data;
+
+      Object.keys(ipDetails).forEach(function(key) {
+        var val = ipDetails[key];
+        $('#output-' + key).html(val);
+      });
+    }
+  </script>
+</head>
+<body>
+  <h1>How to read IP address and address details with JavaScript</h1>
+  <div id="outputs">
+    <table>
+      <tr>
+        <td>IP Address</td>
+        <td id="output-ip"></td>
+      </tr>
+      <tr>
+        <td>City</td>
+        <td id="output-city"></td>
+      </tr>
+      <tr>
+        <td>Country Code</td>
+        <td id="output-country_code"></td>
+      </tr>
+      <tr>
+        <td>Country Name</td>
+        <td id="output-country_name"></td>
+      </tr>
+      <tr>
+        <td>Latitude</td>
+        <td id="output-latitude"></td>
+      </tr>
+      <tr>
+        <td>Longitude</td>
+        <td id="output-longitude"></td>
+      </tr>
+      <tr>
+        <td>Metro Code</td>
+        <td id="output-metro_code"></td>
+      </tr>
+      <tr>
+        <td>Region Code</td>
+        <td id="output-region_code"></td>
+      </tr>
+      <tr>
+        <td>Region Name</td>
+        <td id="output-region_name"></td>
+      </tr>
+      <tr>
+        <td>Time Zone</td>
+        <td id="output-time_zone"></td>
+      </tr>
+      <tr>
+        <td>ZIP Code</td>
+        <td id="output-zip_code"></td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>
