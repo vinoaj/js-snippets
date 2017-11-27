@@ -4,7 +4,7 @@
  */
 
 //Load jQuery if it hasn't been already loaded
- if (window.jQuery === undefined) {
+if (window.jQuery === undefined) {
     var s = document.createElement('script');
     s.src = "https://code.jquery.com/jquery-3.2.1.min.js";
     document.head.appendChild(s);
@@ -45,6 +45,7 @@ ipLookup.promises.geoIpCall = new Promise(function(resolve, reject) {
  * Executes an IP data lookup for current client
  * @returns {Promise}
  */
+ /*
 ipLookup.lookup = function () {
   return new Promise(function(resolve,reject) {
     ipLookup.promises.geoIpCall.then(function(data) {
@@ -52,6 +53,18 @@ ipLookup.lookup = function () {
       resolve(data);
     }, function(error) {
       reject(error);
+    });
+  });
+};
+*/
+
+ipLookup.lookup = function () {
+  return new Promise(function(resolve,reject) {
+    $.getJSON('https://freegeoip.net/json/?callback=?').done(function(data) {
+      ipLookup.data = data;
+      resolve(data);
+    }).fail(function(data) {
+      reject(data);
     });
   });
 };

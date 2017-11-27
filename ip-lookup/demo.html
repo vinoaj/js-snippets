@@ -48,7 +48,7 @@
   <script src="ip-lookup.js"></script>
   <script>
     $(document).ready(function() {
-      ipLookup.lookup().then(function() {
+      ipLookup.lookup().then(function(data) {
         outputIpDetails();
       });
     });
