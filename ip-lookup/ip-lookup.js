@@ -27,39 +27,15 @@ var ipLookup = {};
  * zip_code: "2260"
  **/
 ipLookup.data = {};
-ipLookup.promises = {};
-
-/**
- * Make a data request to freegeoip.net
- * @returns {Promise}
- */
-ipLookup.promises.geoIpCall = new Promise(function(resolve, reject) {
-  $.getJSON('https://freegeoip.net/json/?callback=?').done(function(data) {
-      resolve(data);
-  }).fail(function(data) {
-      reject(data);
-  });
-});
 
 /**
  * Executes an IP data lookup for current client
  * @returns {Promise}
  */
- /*
-ipLookup.lookup = function () {
+ ipLookup.lookup = function () {
   return new Promise(function(resolve,reject) {
-    ipLookup.promises.geoIpCall.then(function(data) {
-      ipLookup.data = data;
-      resolve(data);
-    }, function(error) {
-      reject(error);
-    });
-  });
-};
-*/
-
-ipLookup.lookup = function () {
-  return new Promise(function(resolve,reject) {
+    //If no arguments are provided, the API looks up details for the IP of
+    //  originating request.
     $.getJSON('https://freegeoip.net/json/?callback=?').done(function(data) {
       ipLookup.data = data;
       resolve(data);
