@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Tester</title>
+
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+  </style>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KRDJQ35');</script>
+  <!-- End Google Tag Manager -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+        if (!window['google_tag_manager']) {
+            console.log('GTM did not load');
+            payload = {
+                tid: 'UA-108507372-1',
+                dp: '/GTM_not_fired'
+            }
+
+            httpRequest = new XMLHttpRequest();
+            httpRequest.setRequestHeader('Content-Type', 'application/json');
+            httpRequest.open('POST', 'https://us-central1-phrasal-charger-185822.cloudfunctions.net/relayMPHit');
+            httpReqest.send(payload);
+        } else {
+            console.log("DOM fully loaded and parsed");
+        }
+    });
+  </script>
+</head>
+<body>
+  <h1>GTM fired vs. non-fired test</h1>
+</body>
+</html>
