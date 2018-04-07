@@ -33,5 +33,5 @@ function dateStrToDateObj(day, month, year) {
  * @returns {string} YYYY-MM-DD string representation of the date object
  */
 function getDateStrYYYYMMDD(dateObj) {
-    return dateObj.getISOString().split('T')[0];
+    return dateObj.toISOString().split('T')[0];
 }
