@@ -33,3 +33,19 @@ function urlParamsToObject() {
 
     return qObj;
 }
+
+
+var trackOutboundLink = function(url) {
+    var re = /prourls\.com\?.*url=(.*)/
+    var matches = url.match(re);
+    if (matches && matches.length > 0) {
+        url = matches[1]
+    }
+
+    console.log(url);
+
+    ga('send', 'event', 'outbound', 'click', url, {
+      'transport': 'beacon',
+      'hitCallback': function(){document.location = url;}
+    });
+ };

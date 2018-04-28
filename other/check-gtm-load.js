@@ -6,10 +6,10 @@
 
 function checkGTMLoad() {
     if (!window['google_tag_manager']) {
-        console.log('GTM did not load');
+        // console.log('GTM did not load');
         payload = {
             tid: 'UA-108507372-1',
-            dp: '/GTM_not_fired'
+            dp: '/GTM_not_fired' + document.location.pathname + document.location.search
         };
 
         var endpoint = 'https://us-central1-phrasal-charger-185822.cloudfunctions.net/relayMPHit';
