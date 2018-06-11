@@ -1,5 +1,7 @@
 /**
- * @fileoverview Identify Vimeo iframes and send events to Google Tag Manager
+ * @fileoverview Identify Vimeo iframes and send events to Google Tag Manager.
+ *   Documentation on Vimeo's JS API available at 
+ *   https://github.com/vimeo/player.js
  * @author Vinoaj Vijeyakumaar vinoaj@vinoaj.com
  */
 
@@ -20,10 +22,15 @@ function getVimeoIframes() {
 
     for (var i = 0, l = iframes.length; i < l; i++) {
         var iframe = iframes[i];
-        var iframeSrc = iframe.attributes.src.value;
-        
-        if (RE_VIMEO.test(iframeSrc)) {
-            matchedIframes.push(iframe);
+
+        try {
+            var iframeSrc = iframe.attributes.src.value;
+            
+            if (RE_VIMEO.test(iframeSrc)) {
+                matchedIframes.push(iframe);
+            }
+        } catch(e) {
+            // Do nothing
         }
     }
 
