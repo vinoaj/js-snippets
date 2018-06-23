@@ -8,7 +8,4 @@ document.querySelectorAll('a[href^="tel:"]').forEach(function(el){
 
 
 // Find all links to PDF on the page
-linksPdf = document.querySelectorAll('a[href*=".pdf"]');
-linksPDF = document.querySelectorAll('a[href*=".PDF"]');
-linksPdfPDF = document.querySelectorAll('a[href*=".PDF"], a[href*=".pdf"]');
-linksPdf.concat(linksPDF);
+document.querySelectorAll('a[href*=".PDF"], a[href*=".pdf"]');
